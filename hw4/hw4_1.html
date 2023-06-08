@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .main{
+            height: 100vh;
+        width: 100vw;
+        background-color: darkgray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+                }
+        .add{
+            height: 100vh;
+        width: 35vw;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+
+        }
+        .top{
+        height: 88vh;
+        width: 30vw;
+        margin: 10px auto;
+        border: solid 2px;
+        border-color: lightgray;   
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        }
+
+        .bottom{
+         height: 8vh;
+        width: 30vw;
+        margin: 10px auto;
+        border: solid 2px;
+        border-color: lightgray;   
+        display: flex;
+        justify-content:space-around;
+        text-align: center;
+        flex-flow: column;
+                font-size: 25px;
+        }
+        a{
+            text-decoration: none;
+            margin: 20px 20px;
+        }
+        .inputData{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+        flex-flow: column;
+    }
+    .field{
+        height: 40px;
+        width: 450px;
+        margin: 7px;
+        background-color: aliceblue;
+        font-size: 20px;
+        padding: 10px 10px;
+        border-radius: 3px;
+
+    }
+   button{
+        height: 50px;
+        width: 470px;
+        margin: 20px;
+        background-color: #392ddb;
+        color: white;
+        font-weight: 1000;
+        border-radius: 10px;
+        border-color: #392ddb;
+        padding: 10px 10px;
+   }
+   .image{
+    height: 120px;
+    width: 350px;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+        flex-flow: column;
+   }
+   .links{
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        margin: 20px 20px;
+   }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="add">
+        <div class="top">
+       <img class="image" src="inst.png" alt="">     
+<div class="inputData">
+    <input class="field" type="email" placeholder="Номер телефону, ім’я користувача або емейл" required name="mail">
+    <input class="field" type="password" placeholder="Пароль" required name="pass">
+    <button type="submit" name="submit">Увійти</button>
+    <p style="color:grey">AБО</p>
+    <div class="links">
+        
+    <a href="#" style="font-size: 30px;"><img src="icons8-facebook-48.png" style="height: 30px">Увійти через фейсбук</a>
+    <a href="#" style="font-size: 25px";>Забули пароль?</a>
+</div>
+</div> 
+
+</div>
+        <div class="bottom">
+<p>Не маєте облікового запису? <a href="#">Зареєструйтеся</a></p>
+
+        </div>
+    </div>
+    </div>
+</body>
+</html>

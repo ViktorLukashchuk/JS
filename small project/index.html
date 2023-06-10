@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100%;
+        text-align: center;
+        background: gray;
+      }
+      .usersDiv {
+        text-align: center;
+      }
+
+      .userDiv {
+        background-color: antiquewhite;
+        width: 45%;
+        display: inline-block;
+        border: 1px solid red;
+        margin:10px;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      /*
+        В index.html
+        1 отримати масив об'єктів з endpoint`а https://jsonplaceholder.typicode.com/users
+        2 Вивести id,name всіх user в index.html. Окремий блок для кожного user.
+        3 Додати кожному блоку кнопку/посилання , при кліку на яку відбувається перехід  на сторінку user-details.html, котра має детальну інфорацію про об'єкт на який клікнули
+
+       Стилизація проєкта -
+         index.html - всі блоки з user - по 2 в рядок. кнопки/аосилвння розташувати під інформацією про user.
+         Всі елементи котрі характеризують users, posts, comments візуалізувати, так, щоб було видно що це блоки (дати фон. марджини і тд)
+       */
+      fetch("http://jsonplaceholder.typicode.com/users")
+        .then((response) => response.json())
+        .then((json) => {
+          let h2Elem = document.createElement('h2');
+          h2Elem.innerText = `Brief user data:`
+          document.body.appendChild(h2Elem);
+          let divUsersElem = document.createElement("div");
+          divUsersElem.setAttribute("class", "usersDiv");
+
+          document.body.appendChild(divUsersElem);
+
+          for (const user of json) {
+            let divUserElem = document.createElement("div");
+            divUserElem.setAttribute("class", "userDiv");
+            divUserElem.innerHTML = `<b>ID:</b> ${user.id}, <b>name:</b> ${user.name}, `;
+
+            let aElem = document.createElement("a");
+            let hrefValue = `user-details.html?id=${user.id}`;
+
+            aElem.setAttribute("href", hrefValue);
+            aElem.innerText = `Link to user ${user.id}`;
+
+            let brElem = document.createElement("br");
+
+            divUsersElem.appendChild(divUserElem);
+            divUserElem.appendChild(brElem);
+            divUserElem.appendChild(aElem);
+          }
+        });
+    </script>
+  </body>
+</html>

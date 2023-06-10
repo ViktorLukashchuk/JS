@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mainDiv{
+            background-color: chocolate;
+            border: 1px solid blue;
+            margin:10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .commentDiv{
+            background-color: aqua;
+            width: 20%;
+            display: inline-block;
+            border: 1px solid green;
+            margin:10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .commentsDiv{
+            text-align: center;
+        }
+        p{
+            margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        /*
+       На странице post-details.html:
+        7 Вивести всю, без виключення, інформацію про об'єкт post на який клікнули .
+        8 Нижчє інформаці про пост, вивести всі коментарі поточного поста (ендпоінт  - https://jsonplaceholder.typicode.com/posts/POST_ID/comments)
+
+         Стилизація проєкта -
+            post-details.html - блок з інфою про пост зверху. Коментарі - по 4 в ряд.
+            Всі елементи котрі характеризують users, posts, comments візуалізувати, так, щоб було видно що це блоки (дати фон. марджини і тд)
+         */
+       let url = new URL(location.href)
+       let postId = url.searchParams.get('id');
+
+        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+            .then(response => response.json())
+           .then(posts => {
+               let mainDiv = document.createElement('div');
+               let h2Elem = document.createElement('h2');
+
+               mainDiv.setAttribute('class', 'mainDiv');
+               h2Elem.innerText = `Detailed data of post # ${posts.id}:`;
+               document.body.appendChild(h2Elem);
+
+               for (const data in posts) {
+                   let dataDiv = document.createElement('div');
+
+                   dataDiv.innerHTML = `<b>${data}</b>: ${posts[data]}`;
+                   mainDiv.appendChild(dataDiv);
+               }
+
+               document.body.appendChild(mainDiv);
+
+               fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+                   .then(response => response.json())
+                   .then (comments => {
+                       let h3Elem = document.createElement('h3');
+                       h3Elem.innerText = `All Comment(s) of this post:`;
+                       document.body.appendChild(h3Elem);
+
+                       let commentsDiv = document.createElement('div');
+                       document.body.appendChild(commentsDiv);
+                       commentsDiv.setAttribute('class', 'commentsDiv');
+
+
+                       for (const comment of comments) {
+                           let commentDiv = document.createElement('div');
+                           commentsDiv.appendChild(commentDiv);
+                           commentDiv.setAttribute('class', 'commentDiv');
+
+                           for (const data in comment) {
+                               let pElem = document.createElement('p');
+                               pElem.innerHTML = `<b>${data}</b>: ${comment[data]}`;
+                               commentDiv.appendChild(pElem);
+                           }
+                           commentsDiv.appendChild(commentDiv);
+                           }
+                   });
+           })
+    </script>
+</body>
+</html>
